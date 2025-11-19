@@ -7,6 +7,15 @@ Content-Type: application/json
  
 {
     "name": "mudasir",
-    "email": "mudasir4252@gmail.com",
+    "email": "mudasi423985@gmail.com",
+    "password": "securePassword123@"
+}
+
+###
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+    "email": "mudasi423985@gmail.com",
     "password": "securePassword123@"
 }
