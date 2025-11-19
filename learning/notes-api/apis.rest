@@ -19,3 +19,13 @@ Content-Type: application/json
     "email": "mudasi423985@gmail.com",
     "password": "securePassword123@"
 }
+
+###
+GET http://localhost:3000/notes
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsIm5hbWUiOiJtdWRhc2lyIiwiZW1haWwiOiJtdWRhc2k0MjM5ODVAZ21haWwuY29tIiwiaWF0IjoxNzYzNTYwNTc0LCJleHAiOjE3NjM1NjA2MzR9.CWufB6lV8ytXkCc38_18XvDXtA9QsS-RpvVFvZmMfz4
+
+{
+    "title": "First Note",
+    "content": "This is the content of the first note."
+}
