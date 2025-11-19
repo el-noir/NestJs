@@ -29,12 +29,12 @@ export class NoteController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateNoteDto: UpdateNoteDto) {
-    return this.noteService.update(+id, updateNoteDto);
+  update(@Param('id', ParseIntPipe) id: number, @Body() updateNoteDto: UpdateNoteDto, @Request() req: {user: {sub: number}}) {
+    return this.noteService.update(id, updateNoteDto, req.user.sub);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.noteService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number, @Request() req: {user: {sub: number}}) {
+    return this.noteService.remove(id, req.user.sub);
   }
 }

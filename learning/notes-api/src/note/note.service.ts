@@ -43,11 +43,26 @@ export class NoteService {
     return note;
   }
 
-  update(id: number, updateNoteDto: UpdateNoteDto) {
-    return `This action updates a #${id} note`;
+  async update(id: number, updateNoteDto: UpdateNoteDto, userId: number) {
+    const note = await this.prismaService.note.findFirst({where: {id}});
+    if(!note){
+      throw new NotFoundException("Note not found");
+    }
+    if(note?.userId !==userId){
+      throw new ForbiddenException("You do not have access to this note");
+    }
+    const data: any = {};
+    if (updateNoteDto.title !== undefined) data.title = updateNoteDto.title;
+    if ((updateNoteDto as any).content !== undefined) data.body = (updateNoteDto as any).content;
+
+    const updatedNote = await this.prismaService.note.update({
+      where: { id },
+      data,
+    });
+    return updatedNote;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} note`;
+  async remove(id: number, userId: number) {
+    return await this.prismaService.note.findFirst({where: {id, userId}});
   }
 }
