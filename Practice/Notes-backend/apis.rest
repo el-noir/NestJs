@@ -1,0 +1,56 @@
+GET http://localhost:3000
+
+
+###
+POST http://localhost:3000/api/register
+Content-Type: application/json
+ 
+{
+    "name": "mudasir",
+    "email": "mudasi423985@gmail.com",
+    "password": "securePassword123@"
+}
+
+###
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+    "email": "mudasi423985@gmail.com",
+    "password": "securePassword123@"
+}
+
+###
+POST http://localhost:3000/notes
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsIm5hbWUiOiJtdWRhc2lyIiwiZW1haWwiOiJtdWRhc2k0MjM5ODVAZ21haWwuY29tIiwiaWF0IjoxNzYzNTY0NTkzLCJleHAiOjE3NjM1NjgxOTN9.4WorTUrL4G61bVQ_0TNpttMUBeCvcJEjJHQ_lSC7oas
+
+{
+    "title": "Note 7",
+    "content": "This is the content of the seventh note."
+}
+
+###
+GET http://localhost:3000/notes?take=2&skip=2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsIm5hbWUiOiJtdWRhc2lyIiwiZW1haWwiOiJtdWRhc2k0MjM5ODVAZ21haWwuY29tIiwiaWF0IjoxNzYzNTY0NTkzLCJleHAiOjE3NjM1NjgxOTN9.4WorTUrL4G61bVQ_0TNpttMUBeCvcJEjJHQ_lSC7oas
+
+###
+GET http://localhost:3000/notes/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsIm5hbWUiOiJtdWRhc2lyIiwiZW1haWwiOiJtdWRhc2k0MjM5ODVAZ21haWwuY29tIiwiaWF0IjoxNzYzNTY0NTkzLCJleHAiOjE3NjM1NjgxOTN9.4WorTUrL4G61bVQ_0TNpttMUBeCvcJEjJHQ_lSC7oas
+
+###
+PATCH  http://localhost:3000/notes/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsIm5hbWUiOiJtdWRhc2lyIiwiZW1haWwiOiJtdWRhc2k0MjM5ODVAZ21haWwuY29tIiwiaWF0IjoxNzYzNTY0NTkzLCJleHAiOjE3NjM1NjgxOTN9.4WorTUrL4G61bVQ_0TNpttMUBeCvcJEjJHQ_lSC7oas
+
+{
+    "title": "Updated Note 4",
+    "content": "This is the updated content of the fourth note."
+}
+
+###
+DELETE http://localhost:3000/notes/3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsIm5hbWUiOiJtdWRhc2lyIiwiZW1haWwiOiJtdWRhc2k0MjM5ODVAZ21haWwuY29tIiwiaWF0IjoxNzYzNTY0NTkzLCJleHAiOjE3NjM1NjgxOTN9.4WorTUrL4G61bVQ_0TNpttMUBeCvcJEjJHQ_lSC7oas
