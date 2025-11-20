@@ -3,6 +3,10 @@
 import "dotenv/config";
 import { defineConfig, env } from "prisma/config";
 
+// Debug: log the DATABASE_URL being used
+const dbUrl = process.env.DATABASE_URL;
+console.log('DEBUG prisma.config.ts: DATABASE_URL =', dbUrl);
+
 export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
