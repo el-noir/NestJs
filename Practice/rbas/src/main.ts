@@ -10,6 +10,17 @@ async function bootstrap() {
     .setDescription('The RBAS API description')
     .setVersion('1.0')
     .addTag('rbas')
+    .addBearerAuth( // Add Bearer authentication
+          { 
+            type: 'http', 
+            scheme: 'bearer', 
+            bearerFormat: 'JWT',
+            name: 'JWT',
+            description: 'Enter JWT token',
+            in: 'header',
+          },
+          'access-token' // Unique name for this security scheme
+        )
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory); 
