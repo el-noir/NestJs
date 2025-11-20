@@ -1,0 +1,139 @@
+
+
+### Register ADMIN
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "admin123",
+  "name": "Admin User",
+  "role": "ADMIN"
+}
+
+### Register EMPLOYEE
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "employee@example.com",
+  "password": "employee123",
+  "name": "Employee User",
+  "role": "EMPLOYEE"
+}
+
+### Register USER
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "user123",
+  "name": "Regular User",
+  "role": "USER"
+}
+
+### Login ADMIN
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "admin123"
+}
+
+### Login EMPLOYEE
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "employee@example.com",
+  "password": "employee123"
+}
+
+### Login USER
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "user123"
+}
+
+### ========== EMPLOYEE TOKEN (Can: Create, Read, Update | Cannot: Delete) ==========
+@employeeToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsIm5hbWUiOiJNdWRhc2lyIFNoYWgiLCJlbWFpbCI6Im11ZGFzaXIzQGdtYWlsLmNvbSIsInJvbGUiOiJFTVBMT1lFRSIsImlhdCI6MTc2MzYzODU1NSwiZXhwIjoxNzYzNjQyMTU1fQ.BJ1rIXXdyrzp-XhAgv7g--kR-bfvuuQzBaoAtbeTbXM
+
+### EMPLOYEE - GET (Should work ✅)
+GET http://localhost:3000/blogs/1
+Authorization: Bearer {{employeeToken}}
+Accept: application/json
+
+### EMPLOYEE - PATCH (Should work ✅)
+PATCH http://localhost:3000/blogs/1
+Content-Type: application/json
+Authorization: Bearer {{employeeToken}}
+
+{
+  "title": "Updated by Employee"
+}
+
+### EMPLOYEE - DELETE (Should FAIL ❌ - 403 Forbidden)
+DELETE http://localhost:3000/blogs/2
+Authorization: Bearer {{employeeToken}}
+Accept: application/json
+
+### ========== ADMIN TOKEN (Replace with your admin token after login) ==========
+@adminToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsIm5hbWUiOiJBZG1pbiBVc2VyIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc2MzYzOTI5MSwiZXhwIjoxNzYzNjQyODkxfQ.SIXKZcS638q1M0dfu56eWICydyO5LyjlEdcwOZPKuM4
+
+### ADMIN - GET (Should work ✅)
+GET http://localhost:3000/blogs/1
+Authorization: Bearer {{adminToken}}
+Accept: application/json
+
+### ADMIN - PATCH (Should work ✅)
+PATCH http://localhost:3000/blogs/1
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "title": "Updated by Admin"
+}
+
+### ADMIN - DELETE (Should work ✅)
+DELETE http://localhost:3000/blogs/2
+Authorization: Bearer {{adminToken}}
+Accept: application/json
+
+### ADMIN - CREATE (Should work ✅)
+POST http://localhost:3000/blogs
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "title": "Created by Admin",
+  "content": "Blog content here"
+}
+
+### ========== USER TOKEN (Replace with your user token after login) ==========
+@userToken = YOUR_USER_TOKEN_HERE
+
+### USER - GET (Should work ✅)
+GET http://localhost:3000/blogs
+Authorization: Bearer {{userToken}}
+Accept: application/json
+
+### USER - CREATE (Should FAIL ❌ - 403 Forbidden)
+POST http://localhost:3000/blogs
+Content-Type: application/json
+Authorization: Bearer {{userToken}}
+
+{
+  "title": "Trying to create as User",
+  "content": "This should fail"
+}
+
+### USER - DELETE (Should FAIL ❌ - 403 Forbidden)
+DELETE http://localhost:3000/blogs/1
+Authorization: Bearer {{userToken}}
+Accept: application/json
+
